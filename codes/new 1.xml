@@ -1,0 +1,53 @@
+@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Employee_Project", 
+        joinColumns = { @JoinColumn(name = "employee_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "project_id") }
+    )
+    Set<Project> projects = new HashSet<>();
+   
+    // standard constructor/getters/setters
+	
+\|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+	@ManyToMany(mappedBy = "projects")
+    private Set<Employee> employees = new HashSet<>();
+    
+    // standard constructors/getters/setters   
+-------------------------------------------------------------------------
+@ManyToMany
+    @JoinTable(name = "author_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn( name = "author_id"))
+
+    private Set<Author> authors = new HashSet<Author>();
+
+
+ @ManyToMany(mappedBy = "authors")
+    private Set<Book> books = new HashSet<>();
+	
+	 // standard constructor/getters/setters
+-------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+@ManyToOne
+    @JoinColumn(name="factura_nombre")
+    private Persona persona;
+	
+	
+	
+@OneToMany(mappedBy="persona" )
+  private List<Factura> listaFacturas;
+  
+   // standard constructor/getters/setters
+-------------------------------------------------------------------------------------------------	
+@ManyToOne
+	@JoinTable(name = "gateway_device",
+			joinColumns = @JoinColumn(name="peripheral_uid"),
+			inverseJoinColumns = @JoinColumn( name = "gateway_serialNumber",
+					insertable=false, updatable=false))
+-------------------------------------------------------------------------------------------------
+@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false, referencedColumnName = "id", foreignKey = @ForeignKey(name = "anotacion_bloque_anotacion_tarea_fk"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private AnotacionTarea tarea;
+-------------------------------------------------------------------------------------------------
